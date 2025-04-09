@@ -19,10 +19,9 @@ export default function Home() {
     formData.append('goal', goal)
 
     try {
-      const res = await fetch('http://127.0.0.1:8000/analyze', {
+      const res = await fetch('https://audio-feedback-api.onrender.com/analyze', { // ✅ CORRECT URL
         method: 'POST',
-        mode: 'cors',
-        body: formData
+        body: formData,
       })
 
       const data = await res.json()
@@ -47,7 +46,7 @@ export default function Home() {
       />
 
       <textarea
-        placeholder="Optional: Paste your lyrics here..."
+        placeholder="Paste your lyrics..."
         value={lyrics}
         onChange={e => setLyrics(e.target.value)}
         className="w-full p-2 mb-4 text-black rounded"
@@ -56,7 +55,7 @@ export default function Home() {
 
       <input
         type="text"
-        placeholder="Optional: Chord progression (e.g. Am - F - C - G)"
+        placeholder="Chord progression (e.g. C, G, D, Em)"
         value={chords}
         onChange={e => setChords(e.target.value)}
         className="w-full p-2 mb-4 text-black rounded"
@@ -64,7 +63,7 @@ export default function Home() {
 
       <input
         type="text"
-        placeholder="Optional: What do you want this track to achieve?"
+        placeholder="What do you want this track to achieve?"
         value={goal}
         onChange={e => setGoal(e.target.value)}
         className="w-full p-2 mb-4 text-black rounded"
